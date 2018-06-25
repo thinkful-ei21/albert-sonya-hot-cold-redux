@@ -1,6 +1,6 @@
 'use strict';
 
-import { MAKE_GUESS } from '../actions/index.js';
+import { MAKE_GUESS, NEW_GAME } from '../actions/index.js';
 
 const initialState = {
   guesses: [],
@@ -44,5 +44,17 @@ export const guessReducer = (state=initialState, action) => {
       };
     }
   }
+
+  if (action.type === NEW_GAME) {
+    return {
+      ...state,
+      guesses: [],
+      feedback: 'NEW GAME INITIALIZED',
+      correctAnswer: Math.round(Math.random() * 100) + 1
+    }
+  }
+
   return state;
 };
+
+export default guessReducer;
